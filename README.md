@@ -38,4 +38,4 @@ The extension's configuration is stored in the database table `phpbb_aimodhelp_c
 
 ## License
 
-[GNU General Public License v2](license.txt)
+[GNU General Public License v2](userbase/aimodhelp/license.txt)
