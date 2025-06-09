@@ -33,6 +33,7 @@ class main_listener implements EventSubscriberInterface
 	protected $language;
 	protected $template;
     protected $auth;
+	protected $user;
 
 	/**
 	 * Constructor
@@ -42,11 +43,13 @@ class main_listener implements EventSubscriberInterface
     public function __construct(
         \phpbb\language\language $language,
         \phpbb\template\template $template,
-        \phpbb\auth\auth $auth
+        \phpbb\auth\auth $auth,
+		\phpbb\user $user
     ) {
         $this->language = $language;
         $this->template = $template;
         $this->auth = $auth;
+		$this->user = $user;
     }
 
 
@@ -93,7 +96,8 @@ class main_listener implements EventSubscriberInterface
             
             $has_actions = true;
         }
-		
+		if ($this->user->data['user_id'] != ANONYMOUS) {
+        // User is logged in
         // Action buttons 3,4 for all users
         $postrow['CUSTOM_BUTTON_ACTION2_DATA'] =
             'data-post-id="' . $post_id . '" ' .
@@ -107,7 +111,7 @@ class main_listener implements EventSubscriberInterface
         $postrow['CUSTOM_BUTTON_ACTION2'] = $this->language->lang('AIMODHELP_ACTION2');
 
         $has_actions = true;
-        
+        }
         // Set flag indicating actions exist
         $postrow['AIMODHELP_HAS_ACTIONS'] = $has_actions;
         
