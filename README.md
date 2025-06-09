@@ -14,10 +14,10 @@ The extension's configuration is stored in the database table `phpbb_aimodhelp_c
 
 1. Run the migration SQL scripts located in `ext/userbase/aimodhelp/migrations/`:
    - `aimodhelp_create_config_table.sql` to create the config table.
-   - `aimodhelp_insert_config_values.sql` to insert default configuration values.
+   - `aimodhelp_insert_config_values.sql` to insert default configuration values (edit with your config values before uploading).
 
 2. The configuration parameters include:
-   - `AI_PROVIDER`: The AI service provider (e.g., 'openrouter').
+   - `AI_PROVIDER`: The AI service provider (e.g., 'openrouter' or 'gemini').
    - `AI_API_KEY`: The API key for the AI provider.
    - `AI_MODEL`: The AI model to use.
    - `AI_BASEURL`: The base URL for the AI API.
