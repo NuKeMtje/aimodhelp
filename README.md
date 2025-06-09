@@ -27,6 +27,15 @@ The extension's configuration is stored in the database table `phpbb_aimodhelp_c
 
 - To update configuration values, modify the entries in the `phpbb_aimodhelp_config` table directly via SQL or through an admin UI (if implemented).
 
+## Examples
+<img src="doc/images/Screenshot 2025-06-09 at 10.24.57.png" />
+
+### Moderation example
+<img src="doc/images/Screenshot 2025-06-08 at 21.27.15.png" width="400" />
+
+### Summary example
+<img src="doc/images/Screenshot 2025-06-09 at 06.26.11.png" width="400" />
+
 ## Basic Functionality
 
 - Provides AI-powered moderation assistance for phpBB forums.
