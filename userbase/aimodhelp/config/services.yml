@@ -14,5 +14,6 @@ services:
             - '@language'
             - '@template'
             - '@auth'
+            - '@user'
         tags:
             - { name: event.listener }
