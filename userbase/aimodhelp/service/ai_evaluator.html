@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Userbase AI forum hulp</title>
+  <style>
+    html {
+      height: 100%; /* Ensure html takes full height */
+    }
+    body {
+      min-height: 100vh; /* Ensure body takes at least full viewport height */
+      margin: 0;
+      padding: 0;
+      font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+      background-color: #f0f2f5; /* Light gray background */
+      color: #333;
+    }
+    body > div.container {
+      width: 700px;
+      max-width: 90vw;
+      background-color: #ffffff;
+      padding: 2rem;
+      border-radius: 12px;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+      margin: 2rem auto; /* Center container and add top/bottom margin */
+    }
+    h1 {
+      text-align: center;
+      color: #2c3e50;
+      margin-bottom: 1.5rem;
+    }
+    label {
+      display: block;
+      margin-top: 0.5rem; /* Reduced space for labels */
+      font-weight: 600; /* Bolder labels */
+      color: #555;
+    }
+    textarea, input[type="text"], input[type="number"], select {
+      width: 100%;
+      padding: 0.6rem; /* Reduced padding for inputs */
+      margin-top: 0.15rem; /* Reduced margin for inputs */
+      box-sizing: border-box;
+      border: 1px solid #dcdcdc; /* Lighter border */
+      border-radius: 8px; /* More rounded corners */
+      font-size: 1rem;
+      transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+    }
+    textarea:focus, input[type="text"]:focus, input[type="number"]:focus, select:focus {
+      border-color: #007bff;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+      outline: none;
+    }
+    button {
+      display: block;
+      margin: 1.5rem auto 0 auto; /* Reduced margin for button */
+      padding: 0.75rem 1.5rem; /* Reduced padding for button */
+      font-size: 1rem; /* Reduced font size for button */
+      background-color: #007bff;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out;
+      box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+    }
+    button:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+    }
+    button:disabled {
+      background-color: #cccccc;
+      cursor: not-allowed;
+      box-shadow: none;
+      transform: none;
+    }
+    pre {
+      background: #e9ecef; /* Lighter background for code */
+      padding: 1rem; /* Reduced padding for pre */
+      margin-top: 1rem; /* Reduced margin for pre */
+      white-space: pre-wrap;
+      word-wrap: break-word;
+      border: 1px solid #ced4da;
+      border-radius: 8px;
+      /* Removed max-height and overflow-y for full length */
+      font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+      font-size: 0.9rem;
+      color: #343a40;
+    }
+    .input-group {
+      margin-bottom: 0.75rem; /* Reduced margin for input groups */
+      padding: 0.8rem; /* Reduced padding for input groups */
+      border: 1px solid #e0e0e0;
+      border-radius: 10px; /* More rounded corners */
+      background-color: #fdfdfd; /* Slightly off-white */
+      max-width: 500px;
+      margin-left: auto;
+      margin-right: auto;
+      text-align: left;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+    }
+    .radio-group label {
+        display: inline-block;
+        margin-right: 15px;
+        font-weight: normal;
+        cursor: pointer;
+        padding: 0.3rem 0;
+    }
+    .radio-group input[type="radio"] {
+        margin-right: 5px;
+        transform: scale(1.1); /* Slightly larger radio buttons */
+    }
+    .hidden {
+        display: none;
+    }
+
+    /* Styles for dynamically inserted evaluation/summary content */
+    /* Styles for dynamically inserted evaluation/summary content */
+    #evaluationMessage h1, #evaluationMessage h2, #evaluationMessage h3,
+    #evaluationMessage p, #evaluationMessage ul, #evaluationMessage ol, #evaluationMessage li,
+    #evaluationMessage div { /* Include div to reset any wrapper divs */
+        margin: 0; /* Aggressive margin reset */
+        padding: 0; /* Aggressive padding reset */
+        line-height: 1.3; /* Even tighter line spacing */
+    }
+    #evaluationMessage ul, #evaluationMessage ol {
+        padding-left: 1.2em; /* Slightly reduced padding for lists */
+    }
+    #evaluationMessage h1 { font-size: 1.6em; margin-bottom: 0.3em; } /* Smaller and tighter headers */
+    #evaluationMessage h2 { font-size: 1.3em; margin-bottom: 0.3em; }
+    #evaluationMessage h3 { font-size: 1.1em; margin-bottom: 0.2em; }
+    #evaluationMessage p { font-size: 0.95em; margin-bottom: 0.3em; }
+    #evaluationMessage li { font-size: 0.9em; margin-bottom: 0.1em; } /* Very tight list items */
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Userbase AI hulp</h1>
+    <form id="postForm">
+      <div class="input-group">
+          <label for="action">Actie</label>
+          <select id="action" name="action" required>
+          <option value="">-- Selecteer een actie --</option>
+          <option value="evaluate_general" selected>Beoordeel op basis van algemene forumregels</option>
+          <option value="evaluate_te_koop">Beoordeel op basis van te koop forumregels</option>
+          <option value="summarize">Samenvatten</option>
+          </select>
+      </div>
+
+      <div class="input-group">
+          <label for="outputType">Output Type</label>
+          <select id="outputType" name="outputType" required>
+            <option value="html" selected>Volledige analyse</option>
+            <option value="bbcode">Direct antwoord</option>
+          </select>
+      </div>
+
+      <div class="input-group radio-group">
+          <label>Wat moet beoordeeld worden:</label><br>
+          <input type="radio" id="type_single_post" name="request_type" value="single_post" checked />
+          <label for="type_single_post">Post (per ID)</label><br>
+          <input type="radio" id="type_topic_posts" name="request_type" value="topic_posts" />
+          <label for="type_topic_posts">Onderwerp (per ID)</label>
+          <!-- <input type="radio" id="type_direct_post" name="request_type" value="direct_post" /> -->
+          <!-- <label for="type_direct_post">Forum bericht (BB-code)</label> -->
+      </div>
+
+      <div id="singlePostInput" class="input-group">
+        <label for="post_id">Post ID (p)</label>
+        <input type="number" id="post_id" name="post_id" min="1" />
+      </div>
+
+      <div id="topicPostsInput" class="input-group hidden">
+        <label for="topic_id">Onderwerp ID (t)</label>
+        <input type="number" id="topic_id" name="topic_id" min="1" />
+        <!-- <label for="forum_id">Forum ID (f)</label> -->
+        <!-- <input type="number" id="forum_id" name="forum_id" min="1" /> -->
+        <label for="count">Max aantal laatste berichten (c, optioneel)</label>
+        <input type="number" id="count" name="count" min="0" placeholder="0 voor geen limiet" />
+        <label for="days">Max dagen oud (d, optioneel)</label>
+        <input type="number" id="days" name="days" min="0" placeholder="0 voor geen limiet" />
+      </div>
+
+      <!-- <div id="directPostInput" class="input-group hidden"> -->
+        <!-- <label for="forum_post">Forum Bericht (BB-code)</label> -->
+        <!-- <textarea id="forum_post" name="forum_post" rows="8"></textarea> -->
+      <!-- </div> -->
+
+      <button type="submit">Verstuur</button>
+    </form>
+
+    <h2>Antwoord</h2>
+
+    <div id="evaluationMessage" style="margin-top: 1.5rem; padding: 1.2rem; border: 1px solid #e0e0e0; background: #fdfdfd; /* Removed max-height and overflow-y */ border-radius: 10px; box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);"></div>
+
+  <details style="margin-top: 1.5rem;">
+    <summary style="font-weight: 600; color: #555; cursor: pointer;">Toon JSON Antwoord</summary>
+    <pre id="responseOutput" style="white-space: pre-wrap; word-wrap: break-word; margin-top: 0.8rem;">Nog geen antwoord.</pre>
+  </details>
+
+    <script>
+      function safeStringify(data, label, outputElement) {
+        try {
+          outputElement.textContent = JSON.stringify(data, null, 2);
+        } catch (err) {
+          outputElement.textContent = `Error stringifying JSON at ${label}: ${err.message}`;
+          console.error(`Error stringifying JSON at ${label}:`, err, data);
+        }
+      }
+
+      function safeParseJSON(text, label, outputElement) {
+        try {
+          if (!text || text.trim() === '') {
+            outputElement.textContent += `\nWarning: Empty response text at ${label}`;
+            return null;
+          }
+          return JSON.parse(text);
+        } catch (err) {
+          outputElement.textContent += `\nError parsing JSON at ${label}: ${err.message}\nRaw text: ${text}`;
+          console.error(`Error parsing JSON at ${label}:`, err, `Raw text: ${text}`);
+          return null;
+        }
+      }
+
+      const form = document.getElementById('postForm');
+      const singlePostInputDiv = document.getElementById('singlePostInput');
+      const topicPostsInputDiv = document.getElementById('topicPostsInput');
+      // const directPostInputDiv = document.getElementById('directPostInput'); // Removed
+      const responseOutput = document.getElementById('responseOutput');
+      const evaluationDiv = document.getElementById('evaluationMessage');
+      const submitButton = form.querySelector('button[type="submit"]');
+      const actionSelect = document.getElementById('action');
+      const outputTypeSelect = document.getElementById('outputType');
+
+      function updateFormVisibility() {
+        const selectedType = form.request_type.value;
+        singlePostInputDiv.classList.toggle('hidden', selectedType !== 'single_post');
+        topicPostsInputDiv.classList.toggle('hidden', selectedType !== 'topic_posts');
+        // directPostInputDiv.classList.toggle('hidden', selectedType !== 'direct_post'); // Removed
+        if (selectedType !== 'single_post' && selectedType !== 'topic_posts') {
+          // Default to single_post if direct_post was somehow selected or no valid option
+          document.getElementById('type_single_post').checked = true;
+          singlePostInputDiv.classList.remove('hidden');
+          topicPostsInputDiv.classList.add('hidden');
+        }
+      }
+
+      function updateOutputTypeState() {
+        if (actionSelect.value === 'summarize') {
+          outputTypeSelect.value = 'html';
+          outputTypeSelect.disabled = true;
+        } else {
+          outputTypeSelect.disabled = false;
+        }
+      }
+
+      actionSelect.addEventListener('change', () => {
+        updateOutputTypeState();
+      });
+
+      form.request_type.forEach(radio => {
+        radio.addEventListener('change', updateFormVisibility);
+      });
+
+      form.addEventListener('submit', async (e) => {
+        e.preventDefault();
+        evaluationDiv.innerHTML = '<em>Verzoek wordt verwerkt, even geduld alstublieft...</em>';
+        submitButton.disabled = true;
+        submitButton.textContent = 'Bezig met verwerken...';
+        responseOutput.textContent = ''; // Clear previous raw response
+
+        const action = form.action.value;
+        const requestType = form.request_type.value;
+
+        let payload = {
+          action: action,
+        };
+
+        if (requestType === 'single_post') {
+          const postId = form.post_id.value.trim();
+          if (!postId) {
+            alert('Voer een bericht-ID in.');
+            finalizeSubmit(); return;
+          }
+          payload.post_id = postId;
+        } else if (requestType === 'topic_posts') {
+          const topicId = form.topic_id.value.trim();
+          // const forumId = form.forum_id.value.trim(); // Removed
+          if (!topicId) { // Only topicId is mandatory now for this type
+            alert('Voer een onderwerp-ID in.');
+            finalizeSubmit(); return;
+          }
+          payload.topic_id = topicId;
+          // payload.forum_id = forumId; // Removed
+          if (form.count.value.trim()) payload.count = form.count.value.trim();
+          if (form.days.value.trim()) payload.days = form.days.value.trim();
+          payload.outputType = form.outputType.value;
+        // } else if (requestType === 'direct_post') { // Removed direct_post logic
+          // const forumPostContent = form.forum_post.value.trim();
+          // if (!forumPostContent) {
+            // alert('Please enter forum post content.');
+            // finalizeSubmit(); return;
+          // }
+          // payload.forum_post = forumPostContent;
+        } else {
+          alert('Invalid request type selected.');
+          finalizeSubmit(); return;
+        }
+
+        try {
+          const response = await fetch('AiServiceApi.php', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(payload)
+          });
+
+          const rawText = await response.text();
+          evaluationDiv.innerHTML = ''; // Clear processing message
+
+          const data = safeParseJSON(rawText, 'response json parse', responseOutput);
+          safeStringify(data, 'response data', responseOutput); // Display full JSON response
+
+          if (data) {
+            let message = '';
+            if (data.evaluation && data.evaluation.message) {
+              message = data.evaluation.message;
+            } else if (data.summary && data.summary.message) {
+              message = data.summary.message;
+            } else if (data.error) {
+              message = `<strong style="color:red;">Error:</strong> ${data.error}`;
+              if(data.logs && data.logs.length > 0) {
+                  message += '<br><br><strong>Logs:</strong><br>' + data.logs.join('<br>');
+              }
+            } else if (data.message) { // For other success messages
+               message = data.message;
+            }
+
+
+            if (message) {
+              message = message.replace(/^```html\s*/, '').replace(/```$/, '');
+              if (/^<!DOCTYPE html>/i.test(message.trim()) || /^<html.*>/i.test(message.trim())) {
+                evaluationDiv.innerHTML = '<pre style="white-space: pre-wrap; word-wrap: break-word;">' +
+                  message.replace(/&/g, '&').replace(/</g, '<').replace(/>/g, '>') + '</pre>';
+              } else {
+                evaluationDiv.innerHTML = message;
+              }
+            } else if (!data.error && !data.evaluation && !data.summary) {
+               evaluationDiv.innerHTML = 'Verzoek verwerkt. Geen specifieke evaluatie of samenvattingsbericht geretourneerd.';
+            }
+          } else {
+              evaluationDiv.innerHTML = 'Serverantwoord kon niet worden geparseerd. Controleer de onbewerkte uitvoer hieronder.';
+          }
+
+        } catch (error) {
+          responseOutput.textContent = 'Fetch Error: ' + error.message;
+          evaluationDiv.innerHTML = `<strong style="color:red;">Client-side Error: ${error.message}</strong>`;
+          console.error("Fetch error:", error);
+        } finally {
+          finalizeSubmit();
+        }
+      });
+
+      function finalizeSubmit() {
+          submitButton.disabled = false;
+          submitButton.textContent = 'Verstuur';
+      }
+      
+      function getQueryParam(name) {
+        const urlParams = new URLSearchParams(window.location.search);
+        const value = urlParams.get(name);
+        return value && /^[0-9]+$/.test(value) ? value : (urlParams.get(name) || ''); // Allow non-numeric for base_url
+      }
+
+      document.addEventListener('DOMContentLoaded', function () {
+        const urlParams = new URLSearchParams(window.location.search);
+        const topicIdParam = urlParams.get('t');
+        const postIdParam = urlParams.get('p');
+        const actionParam = urlParams.get('action');
+        const daysParamFromUrl = urlParams.get('d');
+        const countParam = urlParams.get('c');
+        const outputTypeParam = urlParams.get('outputType') || urlParams.get('outputtype') || urlParams.get('output_type');
+
+        // Set action parameter first
+        if (actionParam) {
+            if ([...actionSelect.options].some(opt => opt.value === actionParam)) {
+                actionSelect.value = actionParam;
+            } else {
+                console.warn(`Action parameter '${actionParam}' not found in action select options.`);
+            }
+        }
+
+        // Set outputType parameter
+        if (outputTypeParam) {
+            if ([...outputTypeSelect.options].some(opt => opt.value === outputTypeParam)) {
+                outputTypeSelect.value = outputTypeParam;
+            }
+        }
+
+        // Set post/topic IDs and update visibility
+        if (topicIdParam) {
+          document.getElementById('type_topic_posts').checked = true;
+          document.getElementById('topic_id').value = topicIdParam;
+        } else if (postIdParam) {
+          document.getElementById('type_single_post').checked = true;
+          document.getElementById('post_id').value = postIdParam;
+        } else {
+          // Default to single post if no specific params
+          document.getElementById('type_single_post').checked = true;
+        }
+
+        // Synchronize post_id and topic_id fields if both present (though only one request type can be active)
+        if (postIdParam && topicIdParam) {
+          document.getElementById('post_id').value = postIdParam;
+          document.getElementById('topic_id').value = topicIdParam;
+        }
+
+        if (countParam) {
+          document.getElementById('count').value = countParam;
+        }
+        if (daysParamFromUrl) {
+          document.getElementById('days').value = daysParamFromUrl;
+        }
+
+        updateFormVisibility(); // Initial call to set correct visibility based on checked radio
+        updateOutputTypeState(); // Initial call to set output type state based on action
+
+        // Auto-submit if t or p are present and action is set
+        // Ensure actionSelect.value is correctly set before this check
+        if ((topicIdParam || postIdParam) && actionParam) {
+          // Add a small delay to ensure DOM updates are complete
+          setTimeout(() => {
+            if (form.checkValidity()) {
+              const event = new Event('submit', { bubbles: true, cancelable: true });
+              form.dispatchEvent(event);
+            } else {
+              console.log("Form not valid for auto-submission based on URL parameters.");
+            }
+          }, 100);
+        }
+      });
+    </script>
+</body>
+</html>

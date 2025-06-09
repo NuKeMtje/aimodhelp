@@ -1,0 +1,42 @@
+{% if postrow.AIMODHELP_HAS_ACTIONS %}
+  {% if postrow.CUSTOM_BUTTON_ACTION1_DATA %}
+  <li>
+    <a href="#" class="button button-icon-only open-ai-modal" title="{postrow.CUSTOM_BUTTON_ACTION1_TOOLTIP}" {postrow.CUSTOM_BUTTON_ACTION1_DATA}>
+      <i class="icon fa-magic fa-fw" aria-hidden="true"></i>
+      <span class="sr-only">{postrow.CUSTOM_BUTTON_ACTION1}</span>
+    </a>
+  </li>
+
+  {% endif %}
+  {% if postrow.CUSTOM_BUTTON_ACTION2_DATA %}
+  <li>
+    <a href="#" class="button button-icon-only open-ai-modal" title="{postrow.CUSTOM_BUTTON_ACTION2_TOOLTIP}" {postrow.CUSTOM_BUTTON_ACTION2_DATA}>
+      <i class="icon fa-list-alt fa-fw" aria-hidden="true"></i>
+      <span class="sr-only">{postrow.CUSTOM_BUTTON_ACTION2}</span>
+    </a>
+  </li>
+
+
+  {% endif %}
+  {% if postrow.CUSTOM_BUTTON_ACTION3_URL %}
+  <li>
+    <a href="{postrow.CUSTOM_BUTTON_ACTION3_URL}" target="_blank" class="button button-icon-only" title="{postrow.CUSTOM_BUTTON_ACTION3_TOOLTIP}" data-days="3">
+      <i class="icon fa-file-text-o fa-fw" aria-hidden="true"></i><span class="sr-only">{postrow.CUSTOM_BUTTON_ACTION3}</span>
+    </a>
+  </li>
+  {% endif %}
+  {% if postrow.CUSTOM_BUTTON_ACTION4_URL %}
+  <li>
+    <a href="{postrow.CUSTOM_BUTTON_ACTION4_URL}" target="_blank" class="button button-icon-only" title="{postrow.CUSTOM_BUTTON_ACTION4_TOOLTIP}">
+      <i class="icon fa-file-text fa-fw" aria-hidden="true"></i><span class="sr-only">{postrow.CUSTOM_BUTTON_ACTION4}</span>
+    </a>
+  </li>
+  {% endif %}
+  {% if postrow.CUSTOM_BUTTON_ACTION5_URL %}
+  <li>
+    <a href="{postrow.CUSTOM_BUTTON_ACTION5_URL}" target="_blank" class="button button-icon-only" title="{postrow.CUSTOM_BUTTON_ACTION5_TOOLTIP}">
+      <i class="icon fa-balance-scale fa-fw" aria-hidden="true"></i><span class="sr-only">{postrow.CUSTOM_BUTTON_ACTION5}</span>
+    </a>
+  </li>
+  {% endif %}
+{% endif %}

@@ -1,0 +1,2 @@
+parameters:
+    userbase.aimodhelp.tables.aimodhelp_table: '%core.table_prefix%userbase_aimodhelp_table'

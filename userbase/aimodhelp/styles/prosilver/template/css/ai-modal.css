@@ -1,0 +1,244 @@
+#ai-modal {
+  width: 80%;
+  background: white;
+  padding: 20px;
+}
+
+#ai-modal #ai-modal-close {
+  top: 0em;
+}
+
+#ai-modal-overlay button.close {
+  display: none;
+}
+
+
+@media (max-width: 850px) {
+  #ai-modal #ai-modal-close {
+    top: -1em;
+  }
+}
+
+@media (max-width: 500px) {
+  #ai-modal {
+    width: 100%;
+    padding-left: 0px;
+    padding-right: 0px;
+    margin-bottom: 10px;
+  }
+
+  #ai-modal #ai-modal-content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  #ai-modal-overlay button.close {
+    display: block;
+  }
+
+}
+
+#ai-modal-overlay body {
+  min-height: 100vh;
+  /* Ensure body takes at least full viewport height */
+  margin: 0;
+  padding: 0;
+  font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+  background-color: #f0f2f5;
+  /* Light gray background */
+  color: #333;
+}
+
+#ai-modal-overlay body>div.container {
+  width: 700px;
+  max-width: 90vw;
+  background-color: #ffffff;
+  padding: 2rem;
+  /*      border-radius: 12px;*/
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  margin: 2rem auto;
+  /* Center container and add top/bottom margin */
+}
+
+#ai-modal-overlay h1 {
+  text-align: center;
+  color: #2c3e50;
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+  width: 100%;
+}
+
+#ai-modal-overlay label {
+  display: block;
+  margin-top: 0.5rem;
+  /* Reduced space for labels */
+  font-weight: 600;
+  /* Bolder labels */
+  color: #555;
+}
+
+#ai-modal-overlay textarea,
+#ai-modal-overlay input[type="text"],
+#ai-modal-overlay input[type="number"],
+#ai-modal-overlay select {
+  width: 100%;
+  padding: 0.6rem;
+  /* Reduced padding for inputs */
+  margin-top: 0.15rem;
+  /* Reduced margin for inputs */
+  box-sizing: border-box;
+  border: 1px solid #dcdcdc;
+  /* Lighter border */
+  /* border-radius: 8px;*/
+  /* More rounded corners */
+  font-size: 1rem;
+  /* transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;*/
+}
+
+#ai-modal-overlay textarea:focus,
+#ai-modal-overlay input[type="text"]:focus,
+#ai-modal-overlay input[type="number"]:focus,
+#ai-modal-overlay select:focus {
+  border-color: #007bff;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
+  outline: none;
+}
+
+#ai-modal-overlay button {
+  display: block;
+  margin: 1.5rem auto 0 auto;
+  /* Reduced margin for button */
+  padding: 0.75rem 1.5rem;
+  /* Reduced padding for button */
+  font-size: 1rem;
+  /* Reduced font size for button */
+  background-color: #007bff;
+  color: white;
+  /*border: none;*/
+  /* border-radius: 8px; */
+  cursor: pointer;
+  /* transition: background-color 0.2s ease-in-out, transform 0.1s ease-in-out; */
+  box-shadow: 0 4px 10px rgba(0, 123, 255, 0.2);
+}
+
+#ai-modal-overlay button:hover {
+  background-color: #0056b3;
+  /*      transform: translateY(-2px);*/
+}
+
+#ai-modal-overlay button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  box-shadow: none;
+  transform: none;
+}
+
+#ai-modal-overlay pre {
+  background: #e9ecef;
+  /* Lighter background for code */
+  padding: 0 1rem;
+  /* Reduced padding for pre */
+  /* margin-top: 1rem; */
+  /* Reduced margin for pre */
+  white-space: pre-wrap;
+  word-wrap: break-word;
+  border: 1px solid #ced4da;
+  /* border-radius: 8px;*/
+  /* Removed max-height and overflow-y for full length */
+  font-family: 'Fira Code', 'Consolas', 'Monaco', monospace;
+  font-size: 0.9rem;
+  color: #343a40;
+}
+
+#ai-modal-overlay .input-group {
+  margin-bottom: 0.75rem;
+  /* Reduced margin for input groups */
+  padding: 0.8rem;
+  /* Reduced padding for input groups */
+  border: 1px solid #e0e0e0;
+  /* border-radius: 10px; */
+  /* More rounded corners */
+  background-color: #fdfdfd;
+  /* Slightly off-white */
+  max-width: 500px;
+  margin-left: auto;
+  margin-right: auto;
+  text-align: left;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#ai-modal-overlay .radio-group label {
+  display: inline-block;
+  margin-right: 15px;
+  font-weight: normal;
+  cursor: pointer;
+  padding-bottom: 0.3rem;
+}
+
+#ai-modal-overlay .radio-group input[type="radio"] {
+  margin-right: 5px;
+  transform: scale(1.1);
+  /* Slightly larger radio buttons */
+}
+
+#ai-modal-overlay .hidden {
+  display: none;
+}
+
+#ai-modal-overlay .input-group .title {
+  font-size: 1.5em;
+  font-weight: 500;
+  padding-bottom: 0.5em;
+}
+
+#ai-modal-overlay #evaluationMessage {
+  margin-top: 1.5rem;
+  padding: 1.2rem;
+  border: 1px solid #e0e0e0;
+  /*border-radius: 10px; */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+#ai-modal-overlay #topicPostsInput input:has(+ div) {
+  margin-bottom: 1em;
+}
+
+#ai-modal-overlay #evaluationMessage ul {
+  padding-bottom: 1em;
+}
+
+#ai-modal-overlay #evaluationMessage h1 {
+  margin-bottom: 1.5em;
+  font-weight: 900;
+}
+
+#ai-modal-overlay #evaluationMessage h2 {
+  margin-bottom: 1.2em;
+  font-weight: 700;
+}
+
+#ai-modal-overlay #evaluationMessage h3 {
+  margin-bottom: 0.9em;
+  font-weight: 500;
+}
+
+#ai-modal-overlay #evaluationMessage h4 {
+  margin-bottom: 0.6em;
+  font-weight: 300;
+}
+
+#ai-modal-overlay #evaluationMessage {
+  font-size: 120%;
+}
+
+#ai-modal-overlay #evaluationMessage li {
+  margin-left: 1.2em;
+  margin-bottom: 0.5em;
+}
+
+
+
+.no-scroll {
+  overflow: hidden;
+  height: 100%;
+}

@@ -1,0 +1,18 @@
+imports:
+    - { resource: parameters.yml }
+
+services:
+    userbase.aimodhelp.service:
+        class: userbase\aimodhelp\service
+        arguments:
+            - '@user'
+            - '%userbase.aimodhelp.tables.aimodhelp_table%'
+
+    userbase.aimodhelp.listener:
+        class: userbase\aimodhelp\event\main_listener
+        arguments:
+            - '@language'
+            - '@template'
+            - '@auth'
+        tags:
+            - { name: event.listener }

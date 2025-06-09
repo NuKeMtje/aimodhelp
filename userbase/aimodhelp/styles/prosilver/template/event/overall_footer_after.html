@@ -1,0 +1,75 @@
+<!-- INCLUDEJS @userbase_aimodhelp/js/ai-modal.js -->
+<!-- INCLUDECSS @userbase_aimodhelp/css/ai-modal.css -->
+
+<div id="ai-modal-overlay" style="display: none; position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.5); z-index: 1000; overflow-y: scroll;">
+    <div id="ai-modal" style="position: relative; margin: 100px auto 0 auto; max-width: 700px;">
+        <button id="ai-modal-close" style="position: absolute; top: 0px; right: 20px;">&times;</button>
+        <div id="ai-modal-content">
+      <h1>Userbase AI hulp</h1>
+      <form id="postForm">
+        <div class="input-group">
+          <div class="title" for="action">Actie</div>
+          <select id="action" name="action" required>
+            <option value="evaluate_general" selected>Beoordeel op basis van algemene forumregels</option>
+            <option value="evaluate_te_koop">Beoordeel op basis van te koop forumregels</option>
+            <option value="summarize">Samenvatten</option>
+          </select>
+        </div>
+
+        <div id="outputType-group" class="input-group">
+          <div class="title" for="outputType">Output Type</div>
+          <select id="outputType" name="outputType" required>
+            <option value="html" selected>Volledige analyse</option>
+            <option value="bbcode">Direct antwoord</option>
+          </select>
+        </div>
+
+        <div class="input-group radio-group">
+          <div class="title">Context</div>
+          <input type="radio" id="type_single_post" name="request_type" value="single_post" checked />
+          <label for="type_single_post">Post</label><br />
+          <input type="radio" id="type_topic_posts" name="request_type" value="topic_posts" />
+          <label for="type_topic_posts">Onderwerp</label>
+          <!-- <input type="radio" id="type_direct_post" name="request_type" value="direct_post" /> -->
+          <!-- <label for="type_direct_post">Forum bericht (BB-code)</label> -->
+        </div>
+
+        <div id="singlePostInput" class="input-group hidden">
+          <div class="title" for="post_id">Post ID (p)</div>
+          <input type="number" id="post_id" name="post_id" min="1" />
+        </div>
+
+        <div id="topicPostsInput" class="input-group hidden">
+          <div class="title hidden" for="topic_id">Onderwerp ID (t)</div>
+          <input class="hidden" type="number" id="topic_id" name="topic_id" min="1" />
+          <!-- <label for="forum_id">Forum ID (f)</label> -->
+          <!-- <input type="number" id="forum_id" name="forum_id" min="1" /> -->
+          <div class="title" for="count">Max aantal laatste berichten (optioneel)</div>
+          <input type="number" id="count" name="count" min="0" placeholder="0 voor geen limiet" />
+          <div class="title" for="days">Max dagen oud (optioneel)</div>
+          <input type="number" id="days" name="days" min="0" placeholder="0 voor geen limiet" />
+        </div>
+
+        <!-- <div id="directPostInput" class="input-group hidden"> -->
+        <!-- <label for="forum_post">Forum Bericht (BB-code)</label> -->
+        <!-- <textarea id="forum_post" name="forum_post" rows="8"></textarea> -->
+        <!-- </div> -->
+
+        <button type="submit">Verstuur</button>
+      </form>
+
+      <div class="result">
+        <h2>Antwoord</h2>
+
+        <div id="evaluationMessage"></div>
+
+        <details style="display: none;">
+          <summary style="color: #555; cursor: pointer;">Toon JSON Antwoord</summary>
+          <pre id="responseOutput" style="white-space: pre-wrap; word-wrap: break-word; margin-top: 0.8rem;">Nog geen antwoord.</pre>
+        </details>
+      </div>
+
+      <button class="close" style="float: none">Sluit</button>
+        </div>
+    </div>
+</div>
